@@ -48,81 +48,85 @@ const Register = () => {
         toast(error.message);
       });
   };
-  
-    const [showPassword, setShowPassword] = useState(false);
-  
-    const togglePassword = () => setShowPassword(!showPassword);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => setShowPassword(!showPassword);
 
   return (
-    <div className="my-[100px]">
-      <form
-        onSubmit={handleform}
-        className="flex justify-center items-center mt-[100px]"
-      >
-        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-          <label className="text-center text-[16px] font-bold">Register</label>
+    <div className="my-[100px] mt-[100px] flex justify-center items-center">
+      <div className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 ">
+        <form
+          onSubmit={handleform}
+          className="flex justify-center items-center "
+        >
+          <fieldset className="fieldset  border-base-300 rounded-box w-full ">
+            <label className="text-center text-[16px] font-bold">
+              Register
+            </label>
 
-          <label className="label">Name</label>
-          <input
-            type="text"
-            className="input"
-            name="name"
-            placeholder="Full Name"
-            required
-          />
-          <label className="label">Photo-URL</label>
-          <input
-            type="text"
-            className="input"
-            name="photo"
-            placeholder="Photo-URL"
-            required
-          />
-          <label className="label">Email</label>
-          <input
-            type="email"
-            className="input"
-            name="email"
-            placeholder="Email"
-          />
-
-          <div className="relative w-full max-w-md mx-auto ">
-            <label className="label">Password</label>
+            <label className="label">Name</label>
             <input
-              type={showPassword ? "text" : "password"}
+              type="text"
               className="input"
-              name="pass"
-              placeholder="Password"
+              name="name"
+              placeholder="Full Name"
+              required
             />
-            <button
-              type="button"
-              onClick={togglePassword}
-              className="absolute right-3 top-2/3  transform -translate-y-1/2 text-gray-500"
-            >
-              {showPassword ? (
-                <AiOutlineEyeInvisible size={20} />
-              ) : (
-                <AiOutlineEye size={20} />
-              )}
-            </button>{" "}
-          </div>
-          <button className="btn btn-neutral mt-4">Register</button>
+            <label className="label">Photo-URL</label>
+            <input
+              type="text"
+              className="input"
+              name="photo"
+              placeholder="Photo-URL"
+              required
+            />
+            <label className="label">Email</label>
+            <input
+              type="email"
+              className="input"
+              name="email"
+              placeholder="Email"
+            />
 
-          <p className="text-red-600">{error}</p>
+            <div className="relative w-full max-w-md mx-auto ">
+              <label className="label">Password</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                className="input"
+                name="pass"
+                placeholder="Password"
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="absolute right-3 top-2/3  transform -translate-y-1/2 text-gray-500"
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size={20} />
+                ) : (
+                  <AiOutlineEye size={20} />
+                )}
+              </button>{" "}
+            </div>
+            <button className="btn btn-neutral mt-4">Register</button>
 
-          <p>
-            Already have account ?{" "}
-            <Link className="text-blue-500" to={"/login"}>
-              Login
-            </Link>
-          </p>
-        </fieldset>
-      </form>
-      <div className="flex justify-center">
-        <button onClick={handlebtn} className="btn  btn-active mt-2.5">
-          {" "}
-          <FcGoogle /> Continue with Google
-        </button>
+            <p className="text-red-600">{error}</p>
+
+            <p>
+              Already have account ?{" "}
+              <Link className="text-blue-500" to={"/login"}>
+                Login
+              </Link>
+            </p>
+          </fieldset>
+        </form>
+        <div className="flex justify-center">
+          <button onClick={handlebtn} className="btn  btn-active mt-2.5">
+            {" "}
+            <FcGoogle /> Continue with Google
+          </button>
+        </div>
       </div>
     </div>
   );
