@@ -7,6 +7,7 @@ import Register from "../Pages/Register";
 import FoodDetails from "../Pages/FoodDetails";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Addfood from "../Pages/Addfood";
+import ManageFood from "../Pages/ManageFood";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,9 @@ const router = createBrowserRouter([
             },{
                 path:'/addfood',
                 element:<Addfood></Addfood>
+            },{
+                path:'/managefood',
+                Component:ManageFood
             }
         ]
     }
