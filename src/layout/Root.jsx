@@ -7,14 +7,17 @@ import Footer from "../component/Footer";
 const Root = () => {
   return (
     <>
-      <header><Navbar></Navbar></header>
+    <div className="">
+        <header className="flex-1"><Navbar></Navbar></header>
       <main>
         <Outlet></Outlet>
       </main>
-      <footer>
+      <footer className="">
         <Footer></Footer>
       </footer>
       <Toaster />
+    </div>
+      
     </>
   );
 };

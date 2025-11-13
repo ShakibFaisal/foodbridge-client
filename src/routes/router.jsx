@@ -8,11 +8,13 @@ import FoodDetails from "../Pages/FoodDetails";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Addfood from "../Pages/Addfood";
 import ManageFood from "../Pages/ManageFood";
+import Error from "../Error/Error";
 
 const router = createBrowserRouter([
     {
         path:'/',
         Component:Root,
+        errorElement:<Error></Error>,
         children:[
             {
                 index:true,

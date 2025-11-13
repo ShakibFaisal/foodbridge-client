@@ -1,6 +1,10 @@
+
+
+
 import React, { useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ManageFood = () => {
   const { user } = React.useContext(AuthContext);
@@ -43,12 +47,14 @@ const ManageFood = () => {
 
     if (res.ok) {
       setMyFood(
-        myfood.map((f) => (f._id === selectedFood._id ? updatedFood : f))
+        myfood.map((f) => (f._id === selectedFood._id ? updatedFood : f)),
+        toast.success("Update Successful")
       );
       document.getElementById("update_modal").close();
       setSelectedFood(null);
     }
   };
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -68,13 +74,12 @@ const ManageFood = () => {
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your bid has been deleted.",
+                text: "Your food has been deleted.",
                 icon: "success",
               });
 
-             
-              const remainingfood = myfood.filter((food) => food._id !== id);
-              setMyFood(remainingfood)
+              const remainingFood = myfood.filter((food) => food._id !== id);
+              setMyFood(remainingFood);
             }
           });
       }
@@ -83,81 +88,90 @@ const ManageFood = () => {
 
   return (
     <div className="p-5">
-      <h2 className="text-2xl font-semibold mb-4 text-center text-primary my-7">
-        My Added Foods {myfood.length}
+      <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
+        My Added Foods ({myfood.length})
       </h2>
 
-      <table className="w-full border-collapse text-left">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="p-3">SL No</th>
-            <th className="p-3">Food</th>
-            <th className="p-3">Seller</th>
-            <th className="p-3">Quantity</th>
-            <th className="p-3">Expire Date</th>
-            <th className="p-3">Status</th>
-            <th className="p-3">Actions</th>
-            <th className="p-3">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myfood.map((food, index) => (
-            <tr key={food._id} className="border-b border-black/30 ">
-              <td className="p-3">{index + 1}</td>
-              <td className="p-3 flex items-center gap-3">
-                <img
-                  src={food.food_image}
-                  alt={food.food_name}
-                  className="w-10 h-10 rounded object-cover"
-                />
-                <div>
-                  <p className="font-medium">{food.food_name}</p>
-                </div>
-              </td>
-              <td className="p-3">
-                <p className="font-medium">{user.displayName}</p>
-                <p className="text-sm text-gray-500">{user.email}</p>
-              </td>
-              <td className="p-3">{food.food_quantity}</td>
-              <td className="p-3">{food.expire_date}</td>
-              <td className="p-3">
-                <span
-                  className={`border-2  p-2 rounded-[10px] ${
-                    food.food_status === "Available"
-                      ? "border-green-500 text-green-500 hover:bg-green-200"
-                      : "border-orange-400 text-orange-400 hover:bg-amber-200"
-                  }`}
-                >
-                  {food.food_status}
-                </span>
-              </td>
-              <td className="p-3">
-                <button
-                  className="border-2 text-green-500 border-green-500 px-3 py-1 rounded hover:bg-green-200"
-                  onClick={() => openUpdateModal(food)}
-                >
-                  Update
-                </button>
-              </td>
-              <td className="p-3">
-                <button
-                  onClick={() => {
-                    handleDelete(food._id);
-                  }}
-                  className="border-2 text-red-600 border-red-500 px-3 py-1 rounded hover:bg-red-200"
-                >
-                  Remove
-                </button>
-              </td>
+      <div className="overflow-x-auto rounded-lg shadow-md">
+        <table className="min-w-full border-collapse text-left bg-white">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="p-3 text-sm sm:text-base">SL No</th>
+              <th className="p-3 text-sm sm:text-base">Food</th>
+              <th className="p-3 text-sm sm:text-base">Seller</th>
+              <th className="p-3 text-sm sm:text-base">Quantity</th>
+              <th className="p-3 text-sm sm:text-base">Expire Date</th>
+              <th className="p-3 text-sm sm:text-base">Status</th>
+              <th className="p-3 text-sm sm:text-base">Update</th>
+              <th className="p-3 text-sm sm:text-base">Remove</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {myfood.map((food, index) => (
+              <tr
+                key={food._id}
+                className="border-b border-gray-300 text-sm sm:text-base"
+              >
+                <td className="p-2 sm:p-3">{index + 1}</td>
+                <td className="p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <img
+                    src={food.food_image}
+                    alt={food.food_name}
+                    className="w-10 h-10 rounded object-cover flex-shrink-0"
+                  />
+                  <div className="truncate max-w-[120px] sm:max-w-xs">
+                    <p className="font-medium truncate">{food.food_name}</p>
+                  </div>
+                </td>
+                <td className="p-2 sm:p-3">
+                  <p className="font-medium truncate">{user.displayName}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm truncate">
+                    {user.email}
+                  </p>
+                </td>
+                <td className="p-2 sm:p-3">{food.food_quantity}</td>
+                <td className="p-2 sm:p-3">{food.expire_date}</td>
+                <td className="p-2 sm:p-3">
+                  <span
+                    className={`border-2 p-1 sm:p-2 rounded-lg text-xs sm:text-sm ${
+                      food.food_status === "Available"
+                        ? "border-green-500 text-green-500 hover:bg-green-100"
+                        : "border-orange-400 text-orange-400 hover:bg-orange-100"
+                    }`}
+                  >
+                    {food.food_status}
+                  </span>
+                </td>
+                <td className="p-2 sm:p-3">
+                  <button
+                    onClick={() => openUpdateModal(food)}
+                    className="w-full sm:w-auto border-2 border-green-500 text-green-500 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-green-100 text-xs sm:text-sm"
+                  >
+                    Update
+                  </button>
+                </td>
+                <td className="p-2 sm:p-3">
+                  <button
+                    onClick={() => handleDelete(food._id)}
+                    className="w-full sm:w-auto border-2 border-red-500 text-red-600 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-red-100 text-xs sm:text-sm"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
+    
       <dialog id="update_modal" className="modal">
-        <div className="modal-box">
+        <div className="modal-box max-w-md mx-auto">
           {selectedFood && (
-            <form onSubmit={handleUpdateSubmit} className="flex flex-col gap-3">
+            <form
+              onSubmit={handleUpdateSubmit}
+              className="flex flex-col gap-3"
+            >
               <input
                 type="text"
                 name="food_name"
@@ -201,7 +215,7 @@ const ManageFood = () => {
               <div className="flex justify-end gap-2 mt-2">
                 <button
                   type="button"
-                  className="btn"
+                  className="btn btn-secondary"
                   onClick={() =>
                     document.getElementById("update_modal").close()
                   }

@@ -59,7 +59,7 @@ const Addfood = () => {
       .then((res) => {
         res.json();
         toast.success("Food added successfully!");
-        e.target.reset;
+        e.target.reset();
       })
       .catch(() => {
         toast.error("Error submitting food");
