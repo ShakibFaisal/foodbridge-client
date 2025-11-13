@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 
 const FoodCard = ({ data }) => {
-    console.log(data._id)
+    
   return (
     <div className="card bg-base-100 shadow-md rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105">
       

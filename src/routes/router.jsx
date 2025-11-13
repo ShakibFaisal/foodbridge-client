@@ -6,6 +6,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import FoodDetails from "../Pages/FoodDetails";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import Addfood from "../Pages/Addfood";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
                 path:`/foods/:id`,
                 loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
                 element:<PrivetRoute><FoodDetails></FoodDetails></PrivetRoute>
+            },{
+                path:'/addfood',
+                element:<Addfood></Addfood>
             }
         ]
     }
