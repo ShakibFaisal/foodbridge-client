@@ -10,7 +10,7 @@
   --color-base-200: #f3f3f3;
   --color-base-300: #e7e7e7;
   --color-accent: #706f6f;
-  @apply max-w-11/12 mx-auto;
+  
 }
 :root {
   @apply bg-[#ffffff];

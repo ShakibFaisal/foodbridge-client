@@ -14,7 +14,7 @@ const FoodDetails = () => {
   };
   useEffect(() => {
     if (!food?._id) return;
-    fetch(`http://localhost:3000/foods/request/${food._id}`)
+    fetch(`https://foodbridge-server-three.vercel.app/foods/request/${food._id}`)
       .then((res) => res.json())
       .then((data) => setFoodRequest(data));
   }, [food._id]);
@@ -37,7 +37,7 @@ const FoodDetails = () => {
       requester_img: user.photoURL,
       status: "Pending",
     };
-    fetch("http://localhost:3000/requestfoods", {
+    fetch("https://foodbridge-server-three.vercel.app/requestfoods", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestedfood),

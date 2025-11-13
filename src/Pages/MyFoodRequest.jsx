@@ -6,13 +6,13 @@ const MyFoodRequest = () => {
   const { user } = use(AuthContext);
   const [requestFoods, setRequestFoods] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/food/myrequest?email=${user.email}`)
+    fetch(`https://foodbridge-server-three.vercel.app/food/myrequest?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setRequestFoods(data));
   }, [user]);
   const handlesubmit = (action, id, pid) => {
     console.log(action,id,pid)
-    fetch(`http://localhost:3000/food/myrequest/${id}`, {
+    fetch(`https://foodbridge-server-three.vercel.app/food/myrequest/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: action }),
@@ -20,7 +20,7 @@ const MyFoodRequest = () => {
       .then((res) => res.json())
       .then(() => toast.success(`Request ${action} successfully!`));
     if (action === "accepted") {
-      fetch(`http://localhost:3000/food/status/${pid}`, {
+      fetch(`https://foodbridge-server-three.vercel.app/food/status/${pid}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status:"Donated" }),

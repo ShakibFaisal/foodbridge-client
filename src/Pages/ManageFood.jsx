@@ -13,7 +13,7 @@ const ManageFood = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:3000/userfood?email=${user.email}`)
+      fetch(`https://foodbridge-server-three.vercel.app/userfood?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setMyFood(data));
     }
@@ -37,7 +37,7 @@ const ManageFood = () => {
     };
 
     const res = await fetch(
-      `http://localhost:3000/userfood/${selectedFood._id}`,
+      `https://foodbridge-server-three.vercel.app/userfood/${selectedFood._id}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ const ManageFood = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/food/${id}`, {
+        fetch(`https://foodbridge-server-three.vercel.app/food/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

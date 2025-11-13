@@ -19,11 +19,11 @@ const router = createBrowserRouter([
         children:[
             {
                 index:true,
-                 loader: () => fetch(`http://localhost:3000/highestfoods`),
+                 loader: () => fetch(`https://foodbridge-server-three.vercel.app/highestfoods`),
                 Component:Home
             },{
                 path:'/available',
-                loader: () => fetch(`http://localhost:3000/foods`),
+                loader: () => fetch(`https://foodbridge-server-three.vercel.app/foods`),
                 Component:AvailableFood
             },{
                 path:'/login',
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
                 Component:Register
             },{
                 path:`/foods/:id`,
-                loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
+                loader:({params})=>fetch(`https://foodbridge-server-three.vercel.app/foods/${params.id}`),
                 element:<PrivetRoute><FoodDetails></FoodDetails></PrivetRoute>
             },{
                 path:'/addfood',

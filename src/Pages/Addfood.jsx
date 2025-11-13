@@ -51,7 +51,7 @@ const Addfood = () => {
       food_status: food_status,
     };
 
-    fetch("http://localhost:3000/foods", {
+    fetch("https://foodbridge-server-three.vercel.app/foods", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(foodData),
