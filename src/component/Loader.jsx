@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "../assets/web-logo.png";
+import icon from "../assets/web-logo.jpg";
 
 const Loader = () => {
   return (

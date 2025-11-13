@@ -6,16 +6,17 @@
   name: "light";
   default: true;
   --color-primary: #E75F69;
-  --color-secondary: #d72050;
+  --color-secondary: #f97316;
   --color-base-200: #f3f3f3;
   --color-base-300: #e7e7e7;
   --color-accent: #706f6f;
+  @apply max-w-11/12 mx-auto;
 }
 :root {
   @apply bg-[#ffffff];
   font-family: "Inter", sans-serif;
 }
 .active {
-  text-decoration: underline;
-  color: rgb(224, 58, 213);
+ 
+   @apply underline text-[#E75F69] font-extrabold;
 }

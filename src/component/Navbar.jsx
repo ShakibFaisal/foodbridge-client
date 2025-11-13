@@ -10,12 +10,13 @@ const Navbar = () => {
      signout()
 
   }
+
   const navItems = (
     <>
-      <NavLink className="m-3 cursor-pointer text-[16px] " to={"/"}>
+      <NavLink className="m-3 font-bold  cursor-pointer text-[16px] " to={"/"}>
         Home
       </NavLink>
-      <NavLink className="m-3 cursor-pointer text-[16px]" to={"/available"}>
+      <NavLink className="m-3 font-bold cursor-pointer text-[16px]" to={"/available"}>
         Available Foods
       </NavLink>
     </>
@@ -62,8 +63,9 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1 rounded-4xl">
-              <img src={user.photoURL} className="w-[40px] h-[40px] " alt="" />
+            <div tabIndex={0} role="button" className=" m-1 flex items-center justify-between gap-5 ">
+                <h3>Hi,<span className="text-primary ml-2.5">{user.displayName}</span></h3>
+              <img src={user.photoURL} className="w-[40px] h-[40px] border-2 border-primary rounded-full object-cover  " alt="" />
             </div>
             <ul
               tabIndex="-1"
