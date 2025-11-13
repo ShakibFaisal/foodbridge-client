@@ -3,6 +3,8 @@ import Banner from "../component/Banner";
 import FoodCard from "../component/FoodCard";
 import { useLoaderData } from "react-router";
 import Loader from "../component/Loader";
+import HowItWork from "../component/HowItWork";
+import OurMission from "../component/OurMission";
 
 const Home = () => {
   const data = useLoaderData();
@@ -21,6 +23,8 @@ const Home = () => {
           ))}
         </div>
       </Suspense>
+      <HowItWork></HowItWork>
+      <OurMission></OurMission>
     </div>
   );
 };
