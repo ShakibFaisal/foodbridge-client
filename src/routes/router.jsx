@@ -9,6 +9,7 @@ import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Addfood from "../Pages/Addfood";
 import ManageFood from "../Pages/ManageFood";
 import Error from "../Error/Error";
+import MyFoodRequest from "../Pages/MyFoodRequest";
 
 const router = createBrowserRouter([
     {
@@ -38,10 +39,13 @@ const router = createBrowserRouter([
                 element:<PrivetRoute><FoodDetails></FoodDetails></PrivetRoute>
             },{
                 path:'/addfood',
-                element:<Addfood></Addfood>
+                element:<PrivetRoute><Addfood></Addfood></PrivetRoute> 
             },{
                 path:'/managefood',
-                Component:ManageFood
+                element:<PrivetRoute><ManageFood></ManageFood></PrivetRoute>
+            },{
+                path:'/myfoodrequest',
+                element:<PrivetRoute><MyFoodRequest></MyFoodRequest></PrivetRoute>
             }
         ]
     }

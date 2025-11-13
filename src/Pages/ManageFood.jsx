@@ -98,7 +98,7 @@ const ManageFood = () => {
             <tr className="bg-gray-100">
               <th className="p-3 text-sm sm:text-base">SL No</th>
               <th className="p-3 text-sm sm:text-base">Food</th>
-              <th className="p-3 text-sm sm:text-base">Seller</th>
+              <th className="p-3 text-sm sm:text-base">Donator</th>
               <th className="p-3 text-sm sm:text-base">Quantity</th>
               <th className="p-3 text-sm sm:text-base">Expire Date</th>
               <th className="p-3 text-sm sm:text-base">Status</th>

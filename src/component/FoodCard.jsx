@@ -43,6 +43,9 @@ const FoodCard = ({ data }) => {
           <p>
             <span className="font-semibold">Expires:</span> {data.expire_date}
           </p>
+          <p>
+            <span className="font-semibold">Status:</span> {data.food_status}
+          </p>
         </div>
 
       

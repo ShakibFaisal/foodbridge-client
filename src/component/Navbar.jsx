@@ -81,7 +81,8 @@ const Navbar = () => {
                
               </li>
               <li>
-                <a>My Food Requests</a>
+               
+               <Link to={"/myfoodrequest"}>My Food Requests</Link>
               </li>
               <li>
                 <a onClick={handleSignout}>SignOut</a>
