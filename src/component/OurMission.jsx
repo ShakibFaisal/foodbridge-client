@@ -13,7 +13,7 @@ const OurMission = () => {
         <h2 className="text-3xl font-bold mb-8">Our Mission</h2>
         <p className="max-w-2xl mx-auto mb-12 text-gray-200">
           Our mission is to reduce food waste and help communities by connecting
-          donors with those in need. Every donated meal counts!
+          donors with those in need. Every donated meal counts !
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
