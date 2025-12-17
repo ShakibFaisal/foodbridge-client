@@ -5,18 +5,18 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #E75F69;
+  --color-primary: #FF6B35;
   --color-secondary: #f97316;
   --color-base-200: #f3f3f3;
   --color-base-300: #e7e7e7;
-  --color-accent: #706f6f;
+  --color-accent: #F2A65A;
   
 }
 :root {
-  @apply bg-[#ffffff];
+  @apply bg-[#FFEDE0];
   font-family: "Inter", sans-serif;
 }
 .active {
  
-   @apply underline text-[#E75F69] font-extrabold;
+   @apply  border-2  rounded-3xl bg-[#ed717a] px-3 text-white ;
 }

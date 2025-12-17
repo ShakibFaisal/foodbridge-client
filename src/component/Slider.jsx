@@ -25,7 +25,7 @@ const Slider = () => {
           disableOnInteraction: false,
         }}
         pagination={{ clickable: true }}
-        navigation={true}
+        
         className="mySwiper"
       >
         {slides.map((image, index) => (

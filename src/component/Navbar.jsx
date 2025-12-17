@@ -2,6 +2,8 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { PiBowlFood } from "react-icons/pi";
 import { AuthContext } from "../provider/AuthContext";
+import { FaHome } from "react-icons/fa";
+
 
 const Navbar = () => {
   const { user ,signout} = use(AuthContext);
@@ -13,16 +15,20 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <NavLink className="m-3 font-bold  cursor-pointer text-[16px] " to={"/"}>
-        Home
+      <NavLink className="m-3 flex items-center justify-between gap-1.5 font-bold  cursor-pointer text-[16px] p-2 hover:border-2  hover:px-3 hover:rounded-3xl hover:bg-[#eca8ad] hover:text-white " to={"/"}>
+       <FaHome /> Home
       </NavLink>
-      <NavLink className="m-3 font-bold cursor-pointer text-[16px]" to={"/available"}>
+      <NavLink className="m-3 font-bold cursor-pointer text-[16px] py-2 hover:border-2 hover:px-3 hover:rounded-3xl hover:bg-[#eca8ad] hover:text-white  " to={"/available"}>
         Available Foods
       </NavLink>
+      {user && <NavLink className="m-3 flex items-center justify-between gap-1.5 font-bold  cursor-pointer text-[16px] p-2 hover:border-2  hover:px-3 hover:rounded-3xl hover:bg-[#eca8ad] hover:text-white " to={"/addfood"}>Add Food</NavLink>}
+      {user && <NavLink className="m-3 flex items-center justify-between gap-1.5 font-bold  cursor-pointer text-[16px] p-2 hover:border-2  hover:px-3 hover:rounded-3xl hover:bg-[#eca8ad] hover:text-white " to={"/managefood"}>Manage My Foods</NavLink>}
+      {user && <NavLink className="m-3 flex items-center justify-between gap-1.5 font-bold  cursor-pointer text-[16px] p-2 hover:border-2  hover:px-3 hover:rounded-3xl hover:bg-[#eca8ad] hover:text-white " to={"/myfoodrequest"}>My Food Requests</NavLink>}
+
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm p-3 md:px-10">
+    <div className="navbar h-[80px] bg-base-100/70 backdrop-blur-sm shadow-[0_4px_8px_rgba(0,0,0,0.1)] mb-0.5 p-3  md:px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -71,19 +77,7 @@ const Navbar = () => {
               tabIndex="-1"
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
-              <li>
-                <Link to={"/addfood"}>Add Food</Link>
-                
-              </li>
-              <li>
-              
-                <Link to={"/managefood"}>Manage My Foods</Link>
-               
-              </li>
-              <li>
-               
-               <Link to={"/myfoodrequest"}>My Food Requests</Link>
-              </li>
+             
               <li>
                 <a onClick={handleSignout}>SignOut</a>
               </li>

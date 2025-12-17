@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import NoFoodFound from "../component/NoFoodFound";
 
 const ManageFood = () => {
   const { user } = React.useContext(AuthContext);
@@ -87,13 +88,13 @@ const ManageFood = () => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 min-h-[60vh]">
       <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
         My Added Foods ({myfood.length})
       </h2>
 
       <div className="overflow-x-auto rounded-lg shadow-md">
-        <table className="min-w-full border-collapse text-left bg-white">
+        {myfood.length>0 ?(<table className="min-w-full border-collapse text-left bg-white">
           <thead>
             <tr className="bg-gray-100">
               <th className="p-3 text-sm sm:text-base">SL No</th>
@@ -161,7 +162,10 @@ const ManageFood = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>):<div className="flex justify-center items-center h-[400px] px-5">
+            <NoFoodFound />
+          </div>}
+        
       </div>
 
     

@@ -67,7 +67,7 @@ const Addfood = () => {
   };
 
   return (
-    <div className="flex max-w-11/12 mx-auto mt-[100px] p-8 bg-[#e0727b]  rounded-2xl   flex-col gap-5 md:flex-row items-center justify-center min-h-screen px-6 md:px-12 ">
+    <div className="flex max-w-11/12 mx-auto mt-[100px] mb-8 p-8 bg-[#e0727b]  rounded-2xl   flex-col gap-5 md:flex-row items-center justify-center min-h-screen px-6 md:px-12 ">
       <div className="w-full md:w-1/2   mb-8 md:mb-0">
         <img
           src={img}

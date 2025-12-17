@@ -1,10 +1,12 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import toast from "react-hot-toast";
+import NoFoodFound from "../component/NoFoodFound";
 
 const MyFoodRequest = () => {
   const { user } = use(AuthContext);
   const [requestFoods, setRequestFoods] = useState([]);
+ 
   useEffect(() => {
     fetch(`https://foodbridge-server-three.vercel.app/food/myrequest?email=${user.email}`)
       .then((res) => res.json())
@@ -31,13 +33,13 @@ const MyFoodRequest = () => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 min-h-[60vh]">
       <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
         Food Requests ({requestFoods.length})
       </h2>
 
       <div className="overflow-x-auto rounded-lg shadow-md">
-        <table className="min-w-full border-collapse text-left bg-white">
+        {requestFoods.length>0?( <table className="min-w-full border-collapse text-left bg-white">
           <thead>
             <tr className="bg-gray-100">
               <th className="p-3 text-sm sm:text-base">SL No</th>
@@ -85,19 +87,21 @@ const MyFoodRequest = () => {
                     onClick={() =>
                       handlesubmit("accepted", food._id, food.productcID)
                     }
-                    
-                    className="w-full sm:w-auto border-2 border-green-500 text-green-500 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-green-100 text-xs sm:text-sm"
+                     disabled={food.status!="Pending"}
+                      
+                    className={`w-full sm:w-auto border-2 border-green-500 text-green-500 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-green-100 text-xs sm:text-sm ${food.status != "Pending" ? "opacity-30 cursor-not-allowed" : "opacity-100"}`}
                   >
-                    Accept
+                    Accept {console.log(food.status)}
                   </button>
                 </td>
                 <td className="p-2 sm:p-3">
                   <button
                     onClick={() =>
                       handlesubmit("rejected", food._id, food.productcID)
-                    }
+                    } 
+                    disabled={food.status!="Pending"}
                     
-                    className="w-full sm:w-auto border-2 border-red-500 text-red-600 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-red-100 text-xs sm:text-sm"
+                    className={`w-full sm:w-auto border-2 border-red-500 text-red-600 px-2 sm:px-3 py-1 sm:py-1.5 rounded hover:bg-red-100 text-xs sm:text-sm ${food.status != "Pending" ? "opacity-30 cursor-not-allowed" : "opacity-100"}`}
                   >
                     Reject
                   </button>
@@ -105,7 +109,10 @@ const MyFoodRequest = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>):(<div className="flex justify-center items-center h-[400px] px-5">
+            <NoFoodFound />
+          </div>)}
+       
       </div>
     </div>
   );

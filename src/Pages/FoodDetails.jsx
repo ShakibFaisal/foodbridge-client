@@ -14,7 +14,9 @@ const FoodDetails = () => {
   };
   useEffect(() => {
     if (!food?._id) return;
-    fetch(`https://foodbridge-server-three.vercel.app/foods/request/${food._id}`)
+    fetch(
+      `https://foodbridge-server-three.vercel.app/foods/request/${food._id}`
+    )
       .then((res) => res.json())
       .then((data) => setFoodRequest(data));
   }, [food._id]);
@@ -90,9 +92,16 @@ const FoodDetails = () => {
         <div className="mt-6 text-center">
           <button
             onClick={handleRequest}
-            className="btn bg-orange-500 text-white hover:bg-orange-600 px-8 py-2 rounded-lg"
+            disabled={food.food_status === "Donated"}
+            className={`btn bg-orange-500 text-white hover:bg-orange-600 px-8 py-2 rounded-lg 
+  ${
+    food.food_status === "Donated"
+      ? "opacity-50 cursor-not-allowed"
+      : "opacity-100"
+  }
+`}
           >
-            Request Food
+            {food.food_status === "Donated" ? "Donated" : "Request Food"}
           </button>
         </div>
         <dialog id="update_modal" className="modal">
@@ -150,8 +159,6 @@ const FoodDetails = () => {
                 <th className="p-3 text-sm sm:text-base">Food Requester</th>
                 <th className="p-3 text-sm sm:text-base">Requester email</th>
                 <th className="p-3 text-sm sm:text-base">Status</th>
-
-                
               </tr>
             </thead>
             <tbody>
@@ -185,8 +192,6 @@ const FoodDetails = () => {
                   </td>
                   <td className="p-2 sm:p-3">{food.request_email}</td>
                   <td className="p-2 sm:p-3">{food.status}</td>
-
-                 
                 </tr>
               ))}
             </tbody>

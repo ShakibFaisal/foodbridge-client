@@ -8,7 +8,7 @@ const Root = () => {
   return (
     <>
     <div className="">
-        <header className="flex-1"><Navbar></Navbar></header>
+        <header className="sticky top-0 z-10"><Navbar></Navbar></header>
       <main className="">
         <Outlet></Outlet>
       </main>

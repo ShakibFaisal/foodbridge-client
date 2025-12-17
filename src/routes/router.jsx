@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             },{
                 path:`/foods/:id`,
                 loader:({params})=>fetch(`https://foodbridge-server-three.vercel.app/foods/${params.id}`),
-                element:<PrivetRoute><FoodDetails></FoodDetails></PrivetRoute>
+                element:<FoodDetails></FoodDetails>
             },{
                 path:'/addfood',
                 element:<PrivetRoute><Addfood></Addfood></PrivetRoute> 
