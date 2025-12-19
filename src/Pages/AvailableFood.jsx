@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import Loader from "../component/Loader";
 import FoodCard from "../component/FoodCard";
@@ -9,22 +9,20 @@ const ITEMS_PER_PAGE = 8;
 const AvailableFood = () => {
   const data = useLoaderData();
 
-  const [inputValue, setInputValue] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 🔍 Filter only after clicking Search
+  // 🔍 Dynamic search (onChange)
   const filteredData = data.filter((item) =>
-    item.food_name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.food_name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
-  // 🔎 Search button handler
-  const handleSearch = () => {
-    setSearchTerm(inputValue);
+  // 🔄 Reset pagination when search changes
+  useEffect(() => {
     setCurrentPage(1);
-  };
+  }, [searchValue]);
 
-  // 📄 Pagination logic
+  // 📄 Pagination
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = filteredData.slice(
@@ -39,22 +37,15 @@ const AvailableFood = () => {
         Available Foods
       </h3>
 
-      {/* 🔍 Search with Button */}
-      <div className="flex justify-center gap-3 mt-6 px-4">
+      {/* 🔍 Dynamic Search Input */}
+      <div className="flex justify-center mt-6 px-4">
         <input
           type="text"
           placeholder="Search foods..."
           className="border border-gray-300 rounded-lg px-4 py-2 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-secondary"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-
-        <button
-          onClick={handleSearch}
-          className="px-6 py-2 rounded-lg bg-secondary text-white font-semibold hover:bg-secondary/90"
-        >
-          Search
-        </button>
       </div>
 
       <Suspense fallback={<Loader />}>
