@@ -1,5 +1,6 @@
 import React from "react";
 import { GiMeal } from "react-icons/gi";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const FoodCard = ({ data }) => {
@@ -44,12 +45,12 @@ const FoodCard = ({ data }) => {
         </div>
 
         <div className="text-sm text-gray-700">
-          <p>
-            <span className="font-semibold">Pickup:</span>{" "}
+          <p className="flex items-center gap-1.5">
+            <span className="font-semibold text-2xl text-red-600"><FaLocationDot /></span>{" "}
             {data.pickup_location}
           </p>
           <p>
-            <span className="font-semibold">Expires:</span> {data.expire_date}
+            <span className="font-semibold ml-8">Expires:</span> {data.expire_date}
           </p>
          
         </div>
