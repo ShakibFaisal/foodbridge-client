@@ -19,8 +19,9 @@ const Home = () => {
         <Banner></Banner>
       </div>
 
-      <h3 className="text-center text-3xl font-extrabold text-secondary my-[100px]">
-        Foods
+      <h3 className="text-center text-3xl font-extrabold text-accent-content  my-[100px]">
+       Recent  <span className="text-secondary">Foods</span>
+       
       </h3>
       <Suspense fallback={<Loader />}>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 px-5">
